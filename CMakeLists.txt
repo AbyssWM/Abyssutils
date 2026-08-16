@@ -42,6 +42,17 @@ endif()
 
 file(GLOB_RECURSE SRCFILES CONFIGURE_DEPENDS "src/*.cpp" "include/*.hpp")
 file(GLOB_RECURSE PUBLIC_HEADERS CONFIGURE_DEPENDS "include/*.hpp")
+list(FILTER SRCFILES EXCLUDE REGEX "eventLoop/backend/(Epoll|Kqueue)\\.cpp$")
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  list(APPEND SRCFILES "${CMAKE_CURRENT_SOURCE_DIR}/src/eventLoop/backend/Epoll.cpp")
+elseif(CMAKE_SYSTEM_NAME MATCHES "FreeBSD|OpenBSD|NetBSD|DragonFly")
+  find_package(Threads REQUIRED)
+  set(EVENT_LOOP_LIBRARIES Threads::Threads)
+  list(APPEND SRCFILES "${CMAKE_CURRENT_SOURCE_DIR}/src/eventLoop/backend/Kqueue.cpp")
+else()
+  message(FATAL_ERROR "Unsupported event-loop platform: ${CMAKE_SYSTEM_NAME}")
+endif()
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(deps REQUIRED IMPORTED_TARGET pixman-1)
@@ -53,7 +64,7 @@ target_include_directories(
   PRIVATE "./src")
 set_target_properties(hyprutils PROPERTIES VERSION ${hyprutils_VERSION}
                                            SOVERSION 13)
-target_link_libraries(hyprutils PkgConfig::deps)
+target_link_libraries(hyprutils PkgConfig::deps ${EVENT_LOOP_LIBRARIES})
 
 if(BUILD_TESTING)
   # GTest
