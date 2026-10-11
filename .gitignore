@@ -44,5 +44,5 @@ DartConfiguration.tcl
 Makefile
 cmake_install.cmake
 compile_commands.json
-hyprutils.pc
+abyssutils.pc
 .envrc

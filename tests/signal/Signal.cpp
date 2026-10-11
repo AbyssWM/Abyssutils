@@ -2,13 +2,13 @@
 #include <gtest/gtest.h>
 
 #include <any>
-#include <hyprutils/signal/Signal.hpp>
-#include <hyprutils/signal/Listener.hpp>
-#include <hyprutils/memory/WeakPtr.hpp>
+#include <abyssutils/signal/Signal.hpp>
+#include <abyssutils/signal/Listener.hpp>
+#include <abyssutils/memory/WeakPtr.hpp>
 #include <memory>
 
-using namespace Hyprutils::Signal;
-using namespace Hyprutils::Memory;
+using namespace Abyssutils::Signal;
+using namespace Abyssutils::Memory;
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
@@ -201,7 +201,7 @@ static void listenerAdded() {
     int                 count = 0;
 
     CSignalT<>          signal;
-    CHyprSignalListener secondListener;
+    CAbyssSignalListener secondListener;
 
     auto                listener = signal.listen([&] {
         count += 1;
@@ -221,8 +221,8 @@ static void lastListenerSwapped() {
     int                 count = 0;
 
     CSignalT<>          signal;
-    CHyprSignalListener removedListener;
-    CHyprSignalListener addedListener;
+    CAbyssSignalListener removedListener;
+    CAbyssSignalListener addedListener;
 
     auto                firstListener = signal.listen([&] {
         removedListener.reset(); // dropped and should NOT be invoked
@@ -260,8 +260,8 @@ static void signalDestroyed() {
 
 // purely an asan test
 static void signalDestroyedBeforeListener() {
-    CHyprSignalListener listener1;
-    CHyprSignalListener listener2;
+    CAbyssSignalListener listener1;
+    CAbyssSignalListener listener2;
 
     CSignalT<>          signal;
 
@@ -273,7 +273,7 @@ static void signalDestroyedWithAddedListener() {
     int                 count = 0;
 
     auto                signal = std::make_unique<CSignalT<>>();
-    CHyprSignalListener shouldNotRun;
+    CAbyssSignalListener shouldNotRun;
 
     auto                listener = signal->listen([&] {
         shouldNotRun = signal->listen([&] { count += 2; });
@@ -288,8 +288,8 @@ static void signalDestroyedWithRemovedAndAddedListener() {
     int                 count = 0;
 
     auto                signal = std::make_unique<CSignalT<>>();
-    CHyprSignalListener removed;
-    CHyprSignalListener shouldNotRun;
+    CAbyssSignalListener removed;
+    CAbyssSignalListener shouldNotRun;
 
     auto                listener = signal->listen([&] {
         removed.reset();
@@ -336,7 +336,7 @@ static void staticListenerDestroy() {
 static void listenerDestroysSelf() {
     CSignalT<>          signal;
 
-    CHyprSignalListener listener;
+    CAbyssSignalListener listener;
     listener = signal.listen([&] { listener.reset(); });
 
     // the static signal case is taken care of above

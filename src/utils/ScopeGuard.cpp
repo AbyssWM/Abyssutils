@@ -1,12 +1,12 @@
-#include <hyprutils/utils/ScopeGuard.hpp>
+#include <abyssutils/utils/ScopeGuard.hpp>
 
-using namespace Hyprutils::Utils;
+using namespace Abyssutils::Utils;
 
-Hyprutils::Utils::CScopeGuard::CScopeGuard(const std::function<void()>& fn_) : fn(fn_) {
+Abyssutils::Utils::CScopeGuard::CScopeGuard(const std::function<void()>& fn_) : fn(fn_) {
     ;
 }
 
-Hyprutils::Utils::CScopeGuard::~CScopeGuard() {
+Abyssutils::Utils::CScopeGuard::~CScopeGuard() {
     if (fn)
         fn();
 }

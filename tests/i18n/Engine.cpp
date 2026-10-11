@@ -3,7 +3,7 @@
 
 #include <gtest/gtest.h>
 
-using namespace Hyprutils::I18n;
+using namespace Abyssutils::I18n;
 
 enum eTxtKeys : uint64_t {
     TXT_KEY_HELLO,

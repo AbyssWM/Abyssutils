@@ -1,7 +1,7 @@
-#include <hyprutils/os/Process.hpp>
-#include <hyprutils/memory/Casts.hpp>
-using namespace Hyprutils::OS;
-using namespace Hyprutils::Memory;
+#include <abyssutils/os/Process.hpp>
+#include <abyssutils/memory/Casts.hpp>
+using namespace Abyssutils::OS;
+using namespace Abyssutils::Memory;
 
 #include <csignal>
 #include <cstdio>
@@ -14,7 +14,7 @@ using namespace Hyprutils::Memory;
 #include <sys/wait.h>
 #include <sys/poll.h>
 
-struct Hyprutils::OS::CProcess::impl {
+struct Abyssutils::OS::CProcess::impl {
     std::string                                      binary, out, err;
     std::vector<std::string>                         args;
     std::vector<std::pair<std::string, std::string>> env;
@@ -22,20 +22,20 @@ struct Hyprutils::OS::CProcess::impl {
     int                                              stdoutFD = -1, stderrFD = -1, exitCode = 0, stdinFD = -1;
 };
 
-Hyprutils::OS::CProcess::CProcess(const std::string& binary, const std::vector<std::string>& args) : m_impl(new impl()) {
+Abyssutils::OS::CProcess::CProcess(const std::string& binary, const std::vector<std::string>& args) : m_impl(new impl()) {
     m_impl->binary = binary;
     m_impl->args   = args;
 }
 
-Hyprutils::OS::CProcess::~CProcess() {
+Abyssutils::OS::CProcess::~CProcess() {
     delete m_impl;
 }
 
-void Hyprutils::OS::CProcess::addEnv(const std::string& name, const std::string& value) {
+void Abyssutils::OS::CProcess::addEnv(const std::string& name, const std::string& value) {
     m_impl->env.emplace_back(std::make_pair<>(name, value));
 }
 
-bool Hyprutils::OS::CProcess::runSync() {
+bool Abyssutils::OS::CProcess::runSync() {
     int outPipe[2], errPipe[2];
     if (pipe(outPipe))
         return false;
@@ -180,7 +180,7 @@ bool Hyprutils::OS::CProcess::runSync() {
     return true;
 }
 
-bool Hyprutils::OS::CProcess::runAsync() {
+bool Abyssutils::OS::CProcess::runAsync() {
     int socket[2];
     if (pipe(socket) != 0)
         return false;
@@ -268,30 +268,30 @@ bool Hyprutils::OS::CProcess::runAsync() {
     return true;
 }
 
-const std::string& Hyprutils::OS::CProcess::stdOut() {
+const std::string& Abyssutils::OS::CProcess::stdOut() {
     return m_impl->out;
 }
 
-const std::string& Hyprutils::OS::CProcess::stdErr() {
+const std::string& Abyssutils::OS::CProcess::stdErr() {
     return m_impl->err;
 }
 
-pid_t Hyprutils::OS::CProcess::pid() {
+pid_t Abyssutils::OS::CProcess::pid() {
     return m_impl->grandchildPid;
 }
 
-int Hyprutils::OS::CProcess::exitCode() {
+int Abyssutils::OS::CProcess::exitCode() {
     return m_impl->exitCode;
 }
 
-void Hyprutils::OS::CProcess::setStdinFD(int fd) {
+void Abyssutils::OS::CProcess::setStdinFD(int fd) {
     m_impl->stdinFD = fd;
 }
 
-void Hyprutils::OS::CProcess::setStdoutFD(int fd) {
+void Abyssutils::OS::CProcess::setStdoutFD(int fd) {
     m_impl->stdoutFD = fd;
 }
 
-void Hyprutils::OS::CProcess::setStderrFD(int fd) {
+void Abyssutils::OS::CProcess::setStderrFD(int fd) {
     m_impl->stderrFD = fd;
 }

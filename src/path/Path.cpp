@@ -1,17 +1,17 @@
-#include <hyprutils/path/Path.hpp>
-#include <hyprutils/string/VarList.hpp>
+#include <abyssutils/path/Path.hpp>
+#include <abyssutils/string/VarList.hpp>
 #include <filesystem>
 #include <expected>
 
-using namespace Hyprutils;
+using namespace Abyssutils;
 
-namespace Hyprutils::Path {
+namespace Abyssutils::Path {
     std::string fullConfigPath(std::string basePath, std::string programName) {
-        return basePath + "/hypr/" + programName + ".conf";
+        return basePath + "/abyss/" + programName + ".conf";
     }
 
     std::string fullConfigPath(std::string basePath, std::string programName, std::string extension) {
-        return basePath + "/hypr/" + programName + "." + extension;
+        return basePath + "/abyss/" + programName + "." + extension;
     }
 
     bool checkConfigExists(std::string basePath, std::string programName) {

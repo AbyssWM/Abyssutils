@@ -4,13 +4,13 @@
 #include <vector>
 #include <algorithm>
 
-#include <hyprutils/string/String.hpp>
-#include <hyprutils/memory/Casts.hpp>
+#include <abyssutils/string/String.hpp>
+#include <abyssutils/memory/Casts.hpp>
 
-using namespace Hyprutils::CLI;
-using namespace Hyprutils::Memory;
-using namespace Hyprutils::String;
-using namespace Hyprutils;
+using namespace Abyssutils::CLI;
+using namespace Abyssutils::Memory;
+using namespace Abyssutils::String;
+using namespace Abyssutils;
 
 CArgumentParser::CArgumentParser(const std::span<const char*>& args) : m_impl(makeUnique<CArgumentParserImpl>(args)) {
     ;

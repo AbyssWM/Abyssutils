@@ -1,13 +1,13 @@
-#include <hyprutils/animation/AnimatedVariable.hpp>
-#include <hyprutils/animation/AnimationManager.hpp>
-#include <hyprutils/memory/WeakPtr.hpp>
-#include <hyprutils/animation/Spring.hpp>
+#include <abyssutils/animation/AnimatedVariable.hpp>
+#include <abyssutils/animation/AnimationManager.hpp>
+#include <abyssutils/memory/WeakPtr.hpp>
+#include <abyssutils/animation/Spring.hpp>
 
 #include <algorithm>
 #include <cmath>
 
-using namespace Hyprutils::Animation;
-using namespace Hyprutils::Memory;
+using namespace Abyssutils::Animation;
+using namespace Abyssutils::Memory;
 
 static const std::string          DEFAULTBEZIERNAME = "default";
 static const std::string          DEFAULTSTYLE      = "";
@@ -50,7 +50,7 @@ void CBaseAnimatedVariable::disconnectFromActive() {
     m_bIsConnectedToActive = false;
 }
 
-bool Hyprutils::Animation::CBaseAnimatedVariable::enabled() const {
+bool Abyssutils::Animation::CBaseAnimatedVariable::enabled() const {
     if (m_pConfig && m_pConfig->pValues)
         return m_pConfig->pValues->internalEnabled;
 

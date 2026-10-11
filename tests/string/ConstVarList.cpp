@@ -1,8 +1,8 @@
-#include <hyprutils/string/ConstVarList.hpp>
+#include <abyssutils/string/ConstVarList.hpp>
 
 #include <gtest/gtest.h>
 
-using namespace Hyprutils::String;
+using namespace Abyssutils::String;
 
 TEST(String, constvarlist) {
     CConstVarList listConst("hello    world!", 0, 's', true);

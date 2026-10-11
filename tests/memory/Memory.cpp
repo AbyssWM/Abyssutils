@@ -1,14 +1,14 @@
 
-#include <hyprutils/memory/Atomic.hpp>
-#include <hyprutils/memory/SharedPtr.hpp>
-#include <hyprutils/memory/WeakPtr.hpp>
+#include <abyssutils/memory/Atomic.hpp>
+#include <abyssutils/memory/SharedPtr.hpp>
+#include <abyssutils/memory/WeakPtr.hpp>
 
 #include <gtest/gtest.h>
 #include <chrono>
 #include <thread>
 #include <vector>
 
-using namespace Hyprutils::Memory;
+using namespace Abyssutils::Memory;
 
 #define SP CSharedPointer
 #define WP CWeakPointer

@@ -1,0 +1,10 @@
+prefix=@PREFIX@
+includedir=@INCLUDE@
+libdir=@LIBDIR@
+
+Name: abyssutils
+URL: https://github.com/AbyssWM/abyssutils
+Description: Abyssland utilities library used across the ecosystem 
+Version: @ABYSSUTILS_VERSION@
+Cflags: -I${includedir}
+Libs: -L${libdir} -labyssutils

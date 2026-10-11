@@ -1,7 +1,7 @@
-#include <hyprutils/math/Box.hpp>
+#include <abyssutils/math/Box.hpp>
 #include <gtest/gtest.h>
 
-using namespace Hyprutils::Math;
+using namespace Abyssutils::Math;
 
 TEST(Math, box) {
     // Test default constructor and accessors
@@ -39,7 +39,7 @@ TEST(Math, box) {
         EXPECT_EQ(box.pos(), Vector2D(30, 35));
 
         // Test transformation
-        box.transform(HYPRUTILS_TRANSFORM_90, 100, 200);
+        box.transform(ABYSSUTILS_TRANSFORM_90, 100, 200);
         EXPECT_EQ(box.pos(), Vector2D(135, 30));
         EXPECT_EQ(box.size(), Vector2D(30, 20));
 

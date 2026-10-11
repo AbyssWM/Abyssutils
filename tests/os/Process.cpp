@@ -1,11 +1,11 @@
-#include <hyprutils/os/Process.hpp>
+#include <abyssutils/os/Process.hpp>
 
 #include <gtest/gtest.h>
 
 #include <sys/types.h>
 #include <signal.h>
 
-using namespace Hyprutils::OS;
+using namespace Abyssutils::OS;
 
 TEST(OS, process) {
     CProcess process("sh", {"-c", "echo \"Hello $WORLD!\""});

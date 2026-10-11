@@ -1,4 +1,4 @@
-#include <hyprutils/os/Semaphore.hpp>
+#include <abyssutils/os/Semaphore.hpp>
 
 #include <cerrno>
 #include <fcntl.h>
@@ -9,8 +9,8 @@
 
 #include <format>
 
-using namespace Hyprutils;
-using namespace Hyprutils::OS;
+using namespace Abyssutils;
+using namespace Abyssutils::OS;
 
 CSemaphore::CSemaphore(const char* name) {
     m_fd = shm_open(std::format("/hu_{}", name).c_str(), O_CREAT | O_RDWR | O_CLOEXEC, 0600);

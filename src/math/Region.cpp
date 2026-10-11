@@ -1,104 +1,104 @@
-#include "hyprutils/memory/Casts.hpp"
-#include <hyprutils/math/Region.hpp>
+#include "abyssutils/memory/Casts.hpp"
+#include <abyssutils/math/Region.hpp>
 #include <cmath>
 
-using namespace Hyprutils::Math;
-using namespace Hyprutils::Memory;
+using namespace Abyssutils::Math;
+using namespace Abyssutils::Memory;
 
 constexpr const int64_t MAX_REGION_SIDE = 10000000;
 
-Hyprutils::Math::CRegion::CRegion() {
+Abyssutils::Math::CRegion::CRegion() {
     pixman_region32_init(&m_rRegion);
 }
 
-Hyprutils::Math::CRegion::CRegion(const pixman_region32_t* const ref) {
+Abyssutils::Math::CRegion::CRegion(const pixman_region32_t* const ref) {
     pixman_region32_init(&m_rRegion);
     pixman_region32_copy(&m_rRegion, ref);
 }
 
-Hyprutils::Math::CRegion::CRegion(double x, double y, double w, double h) {
+Abyssutils::Math::CRegion::CRegion(double x, double y, double w, double h) {
     pixman_region32_init_rect(&m_rRegion, x, y, w, h);
 }
 
-Hyprutils::Math::CRegion::CRegion(const CBox& box) {
+Abyssutils::Math::CRegion::CRegion(const CBox& box) {
     pixman_region32_init_rect(&m_rRegion, box.x, box.y, box.w, box.h);
 }
 
-Hyprutils::Math::CRegion::CRegion(pixman_box32_t* box) {
+Abyssutils::Math::CRegion::CRegion(pixman_box32_t* box) {
     pixman_region32_init_rect(&m_rRegion, box->x1, box->y1, box->x2 - box->x1, box->y2 - box->y1);
 }
 
-Hyprutils::Math::CRegion::CRegion(const CRegion& other) {
+Abyssutils::Math::CRegion::CRegion(const CRegion& other) {
     pixman_region32_init(&m_rRegion);
     pixman_region32_copy(&m_rRegion, other.pixman());
 }
 
-Hyprutils::Math::CRegion::CRegion(CRegion&& other) noexcept {
+Abyssutils::Math::CRegion::CRegion(CRegion&& other) noexcept {
     pixman_region32_init(&m_rRegion);
     pixman_region32_copy(&m_rRegion, other.pixman());
 }
 
-Hyprutils::Math::CRegion::~CRegion() {
+Abyssutils::Math::CRegion::~CRegion() {
     pixman_region32_fini(&m_rRegion);
 }
 
-CRegion& Hyprutils::Math::CRegion::clear() {
+CRegion& Abyssutils::Math::CRegion::clear() {
     pixman_region32_clear(&m_rRegion);
     return *this;
 }
 
-CRegion& Hyprutils::Math::CRegion::set(const CRegion& other) {
+CRegion& Abyssutils::Math::CRegion::set(const CRegion& other) {
     pixman_region32_copy(&m_rRegion, other.pixman());
     return *this;
 }
 
-CRegion& Hyprutils::Math::CRegion::add(const CRegion& other) {
+CRegion& Abyssutils::Math::CRegion::add(const CRegion& other) {
     pixman_region32_union(&m_rRegion, &m_rRegion, other.pixman());
     return *this;
 }
 
-CRegion& Hyprutils::Math::CRegion::add(double x, double y, double w, double h) {
+CRegion& Abyssutils::Math::CRegion::add(double x, double y, double w, double h) {
     pixman_region32_union_rect(&m_rRegion, &m_rRegion, x, y, w, h);
     return *this;
 }
 
-CRegion& Hyprutils::Math::CRegion::add(const CBox& other) {
+CRegion& Abyssutils::Math::CRegion::add(const CBox& other) {
     pixman_region32_union_rect(&m_rRegion, &m_rRegion, other.x, other.y, other.w, other.h);
     return *this;
 }
 
-CRegion& Hyprutils::Math::CRegion::subtract(const CRegion& other) {
+CRegion& Abyssutils::Math::CRegion::subtract(const CRegion& other) {
     pixman_region32_subtract(&m_rRegion, &m_rRegion, other.pixman());
     return *this;
 }
 
-CRegion& Hyprutils::Math::CRegion::intersect(const CRegion& other) {
+CRegion& Abyssutils::Math::CRegion::intersect(const CRegion& other) {
     pixman_region32_intersect(&m_rRegion, &m_rRegion, other.pixman());
     return *this;
 }
 
-CRegion& Hyprutils::Math::CRegion::intersect(double x, double y, double w, double h) {
+CRegion& Abyssutils::Math::CRegion::intersect(double x, double y, double w, double h) {
     pixman_region32_intersect_rect(&m_rRegion, &m_rRegion, x, y, w, h);
     return *this;
 }
 
-CRegion& Hyprutils::Math::CRegion::invert(pixman_box32_t* box) {
+CRegion& Abyssutils::Math::CRegion::invert(pixman_box32_t* box) {
     pixman_region32_inverse(&m_rRegion, &m_rRegion, box);
     return *this;
 }
 
-CRegion& Hyprutils::Math::CRegion::invert(const CBox& box) {
+CRegion& Abyssutils::Math::CRegion::invert(const CBox& box) {
     pixman_box32 pixmanBox = {.x1 = sc<int32_t>(box.x), .y1 = sc<int32_t>(box.y), .x2 = sc<int32_t>(box.w) + sc<int32_t>(box.x), .y2 = sc<int32_t>(box.h) + sc<int32_t>(box.y)};
     return this->invert(&pixmanBox);
 }
 
-CRegion& Hyprutils::Math::CRegion::translate(const Vector2D& vec) {
+CRegion& Abyssutils::Math::CRegion::translate(const Vector2D& vec) {
     pixman_region32_translate(&m_rRegion, vec.x, vec.y);
     return *this;
 }
 
-CRegion& Hyprutils::Math::CRegion::transform(const eTransform t, double w, double h) {
-    if (t == HYPRUTILS_TRANSFORM_NORMAL)
+CRegion& Abyssutils::Math::CRegion::transform(const eTransform t, double w, double h) {
+    if (t == ABYSSUTILS_TRANSFORM_NORMAL)
         return *this;
 
     auto rects = getRects();
@@ -114,7 +114,7 @@ CRegion& Hyprutils::Math::CRegion::transform(const eTransform t, double w, doubl
     return *this;
 }
 
-CRegion& Hyprutils::Math::CRegion::expand(double units) {
+CRegion& Abyssutils::Math::CRegion::expand(double units) {
     auto rects = getRects();
 
     clear();
@@ -127,21 +127,21 @@ CRegion& Hyprutils::Math::CRegion::expand(double units) {
     return *this;
 }
 
-CRegion& Hyprutils::Math::CRegion::rationalize() {
+CRegion& Abyssutils::Math::CRegion::rationalize() {
     intersect(CBox{-MAX_REGION_SIDE, -MAX_REGION_SIDE, MAX_REGION_SIDE * 2, MAX_REGION_SIDE * 2});
     return *this;
 }
 
-CRegion Hyprutils::Math::CRegion::copy() const {
+CRegion Abyssutils::Math::CRegion::copy() const {
     return CRegion(*this);
 }
 
-CRegion& Hyprutils::Math::CRegion::scale(float scale_) {
+CRegion& Abyssutils::Math::CRegion::scale(float scale_) {
     scale({scale_, scale_});
     return *this;
 }
 
-CRegion& Hyprutils::Math::CRegion::scale(const Vector2D& scale) {
+CRegion& Abyssutils::Math::CRegion::scale(const Vector2D& scale) {
     if (scale == Vector2D{1, 1})
         return *this;
 
@@ -163,7 +163,7 @@ CRegion& Hyprutils::Math::CRegion::scale(const Vector2D& scale) {
     return *this;
 }
 
-std::vector<pixman_box32_t> Hyprutils::Math::CRegion::getRects() const {
+std::vector<pixman_box32_t> Abyssutils::Math::CRegion::getRects() const {
     std::vector<pixman_box32_t> result;
 
     int                         rectsNum = 0;
@@ -174,20 +174,20 @@ std::vector<pixman_box32_t> Hyprutils::Math::CRegion::getRects() const {
     return result;
 }
 
-CBox Hyprutils::Math::CRegion::getExtents() {
+CBox Abyssutils::Math::CRegion::getExtents() {
     pixman_box32_t* box = pixman_region32_extents(&m_rRegion);
     return {sc<double>(box->x1), sc<double>(box->y1), sc<double>(box->x2) - box->x1, sc<double>(box->y2) - box->y1};
 }
 
-bool Hyprutils::Math::CRegion::containsPoint(const Vector2D& vec) const {
+bool Abyssutils::Math::CRegion::containsPoint(const Vector2D& vec) const {
     return pixman_region32_contains_point(&m_rRegion, vec.x, vec.y, nullptr);
 }
 
-bool Hyprutils::Math::CRegion::empty() const {
+bool Abyssutils::Math::CRegion::empty() const {
     return !pixman_region32_not_empty(&m_rRegion);
 }
 
-Vector2D Hyprutils::Math::CRegion::closestPoint(const Vector2D& vec) const {
+Vector2D Abyssutils::Math::CRegion::closestPoint(const Vector2D& vec) const {
     if (containsPoint(vec))
         return vec;
 

@@ -1,8 +1,8 @@
-#include <hyprutils/math/Region.hpp>
+#include <abyssutils/math/Region.hpp>
 
 #include <gtest/gtest.h>
 
-using namespace Hyprutils::Math;
+using namespace Abyssutils::Math;
 
 TEST(Math, region) {
     CRegion rg(CBox{{20, 20}, {40, 40}});

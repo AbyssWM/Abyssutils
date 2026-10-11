@@ -1,8 +1,8 @@
 #include "I18nEngine.hpp"
 
-using namespace Hyprutils::I18n;
+using namespace Abyssutils::I18n;
 
-std::string Hyprutils::I18n::extractLocale(std::string locale) {
+std::string Abyssutils::I18n::extractLocale(std::string locale) {
     // localeStr is very arbitrary... from my testing, it can be:
     // en_US.UTF-8
     // LC_CTYPE=en_US

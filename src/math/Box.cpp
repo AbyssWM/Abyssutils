@@ -1,17 +1,17 @@
-#include <hyprutils/math/Box.hpp>
+#include <abyssutils/math/Box.hpp>
 #include <limits>
 #include <algorithm>
 #include <cmath>
 
 #define VECINRECT(vec, x1, y1, x2, y2) ((vec).x >= (x1) && (vec).x < (x2) && (vec).y >= (y1) && (vec).y < (y2))
 
-using namespace Hyprutils::Math;
+using namespace Abyssutils::Math;
 
 constexpr double HALF    = 0.5;
 constexpr double DOUBLE  = 2.0;
 constexpr double EPSILON = 1e-9;
 
-CBox&            Hyprutils::Math::CBox::scale(double scale) {
+CBox&            Abyssutils::Math::CBox::scale(double scale) {
     x *= scale;
     y *= scale;
     w *= scale;
@@ -20,7 +20,7 @@ CBox&            Hyprutils::Math::CBox::scale(double scale) {
     return *this;
 }
 
-CBox& Hyprutils::Math::CBox::scale(const Vector2D& scale) {
+CBox& Abyssutils::Math::CBox::scale(const Vector2D& scale) {
     x *= scale.x;
     y *= scale.y;
     w *= scale.x;
@@ -29,26 +29,26 @@ CBox& Hyprutils::Math::CBox::scale(const Vector2D& scale) {
     return *this;
 }
 
-CBox& Hyprutils::Math::CBox::translate(const Vector2D& vec) {
+CBox& Abyssutils::Math::CBox::translate(const Vector2D& vec) {
     x += vec.x;
     y += vec.y;
 
     return *this;
 }
 
-Vector2D Hyprutils::Math::CBox::middle() const {
+Vector2D Abyssutils::Math::CBox::middle() const {
     return Vector2D{x + (w * HALF), y + (h * HALF)};
 }
 
-bool Hyprutils::Math::CBox::containsPoint(const Vector2D& vec) const {
+bool Abyssutils::Math::CBox::containsPoint(const Vector2D& vec) const {
     return VECINRECT(vec, x, y, x + w, y + h);
 }
 
-bool Hyprutils::Math::CBox::empty() const {
+bool Abyssutils::Math::CBox::empty() const {
     return std::fabs(w) < EPSILON || std::fabs(h) < EPSILON;
 }
 
-CBox& Hyprutils::Math::CBox::round() {
+CBox& Abyssutils::Math::CBox::round() {
     double roundedX = std::round(x);
     double roundedY = std::round(y);
     double newW     = x + w - roundedX;
@@ -62,7 +62,7 @@ CBox& Hyprutils::Math::CBox::round() {
     return *this;
 }
 
-CBox& Hyprutils::Math::CBox::transform(const eTransform t, double w, double h) {
+CBox& Abyssutils::Math::CBox::transform(const eTransform t, double w, double h) {
 
     CBox temp = *this;
 
@@ -75,35 +75,35 @@ CBox& Hyprutils::Math::CBox::transform(const eTransform t, double w, double h) {
     }
 
     switch (t) {
-        case HYPRUTILS_TRANSFORM_NORMAL:
+        case ABYSSUTILS_TRANSFORM_NORMAL:
             x = temp.x;
             y = temp.y;
             break;
-        case HYPRUTILS_TRANSFORM_90:
+        case ABYSSUTILS_TRANSFORM_90:
             x = h - temp.y - temp.height;
             y = temp.x;
             break;
-        case HYPRUTILS_TRANSFORM_180:
+        case ABYSSUTILS_TRANSFORM_180:
             x = w - temp.x - temp.width;
             y = h - temp.y - temp.height;
             break;
-        case HYPRUTILS_TRANSFORM_270:
+        case ABYSSUTILS_TRANSFORM_270:
             x = temp.y;
             y = w - temp.x - temp.width;
             break;
-        case HYPRUTILS_TRANSFORM_FLIPPED:
+        case ABYSSUTILS_TRANSFORM_FLIPPED:
             x = w - temp.x - temp.width;
             y = temp.y;
             break;
-        case HYPRUTILS_TRANSFORM_FLIPPED_90:
+        case ABYSSUTILS_TRANSFORM_FLIPPED_90:
             x = temp.y;
             y = temp.x;
             break;
-        case HYPRUTILS_TRANSFORM_FLIPPED_180:
+        case ABYSSUTILS_TRANSFORM_FLIPPED_180:
             x = temp.x;
             y = h - temp.y - temp.height;
             break;
-        case HYPRUTILS_TRANSFORM_FLIPPED_270:
+        case ABYSSUTILS_TRANSFORM_FLIPPED_270:
             x = h - temp.y - temp.height;
             y = w - temp.x - temp.width;
             break;
@@ -112,7 +112,7 @@ CBox& Hyprutils::Math::CBox::transform(const eTransform t, double w, double h) {
     return *this;
 }
 
-CBox& Hyprutils::Math::CBox::addExtents(const SBoxExtents& e) {
+CBox& Abyssutils::Math::CBox::addExtents(const SBoxExtents& e) {
     x -= e.topLeft.x;
     y -= e.topLeft.y;
     w += e.topLeft.x + e.bottomRight.x;
@@ -121,7 +121,7 @@ CBox& Hyprutils::Math::CBox::addExtents(const SBoxExtents& e) {
     return *this;
 }
 
-CBox& Hyprutils::Math::CBox::scaleFromCenter(double scale) {
+CBox& Abyssutils::Math::CBox::scaleFromCenter(double scale) {
     double oldW = w, oldH = h;
 
     w *= scale;
@@ -133,7 +133,7 @@ CBox& Hyprutils::Math::CBox::scaleFromCenter(double scale) {
     return *this;
 }
 
-CBox& Hyprutils::Math::CBox::expand(const double& value) {
+CBox& Abyssutils::Math::CBox::expand(const double& value) {
     x -= value;
     y -= value;
     w += value * DOUBLE;
@@ -147,14 +147,14 @@ CBox& Hyprutils::Math::CBox::expand(const double& value) {
     return *this;
 }
 
-CBox& Hyprutils::Math::CBox::noNegativeSize() {
+CBox& Abyssutils::Math::CBox::noNegativeSize() {
     w = std::clamp(w, 0.0, std::numeric_limits<double>::infinity());
     h = std::clamp(h, 0.0, std::numeric_limits<double>::infinity());
 
     return *this;
 }
 
-CBox Hyprutils::Math::CBox::intersection(const CBox& other) const {
+CBox Abyssutils::Math::CBox::intersection(const CBox& other) const {
     const double newX      = std::max(x, other.x);
     const double newY      = std::max(y, other.y);
     const double newBottom = std::min(y + h, other.y + other.h);
@@ -170,15 +170,15 @@ CBox Hyprutils::Math::CBox::intersection(const CBox& other) const {
     return {newX, newY, newW, newH};
 }
 
-bool Hyprutils::Math::CBox::overlaps(const CBox& other) const {
+bool Abyssutils::Math::CBox::overlaps(const CBox& other) const {
     return (other.x + other.w > x) && (x + w > other.x) && (other.y + other.h > y) && (y + h > other.y);
 }
 
-bool Hyprutils::Math::CBox::inside(const CBox& bound) const {
+bool Abyssutils::Math::CBox::inside(const CBox& bound) const {
     return bound.x < x && bound.y < y && x + w < bound.x + bound.w && y + h < bound.y + bound.h;
 }
 
-CBox Hyprutils::Math::CBox::roundInternal() {
+CBox Abyssutils::Math::CBox::roundInternal() {
     double flooredX = std::floor(x);
     double flooredY = std::floor(y);
     double newW     = x + w - flooredX;
@@ -187,23 +187,23 @@ CBox Hyprutils::Math::CBox::roundInternal() {
     return CBox{flooredX, flooredY, std::floor(newW), std::floor(newH)};
 }
 
-CBox Hyprutils::Math::CBox::copy() const {
+CBox Abyssutils::Math::CBox::copy() const {
     return CBox{*this};
 }
 
-Vector2D Hyprutils::Math::CBox::pos() const {
+Vector2D Abyssutils::Math::CBox::pos() const {
     return {x, y};
 }
 
-Vector2D Hyprutils::Math::CBox::size() const {
+Vector2D Abyssutils::Math::CBox::size() const {
     return {w, h};
 }
 
-Vector2D Hyprutils::Math::CBox::extent() const {
+Vector2D Abyssutils::Math::CBox::extent() const {
     return pos() + size();
 }
 
-Vector2D Hyprutils::Math::CBox::closestPoint(const Vector2D& vec) const {
+Vector2D Abyssutils::Math::CBox::closestPoint(const Vector2D& vec) const {
     if (containsPoint(vec))
         return vec;
 
@@ -232,6 +232,6 @@ Vector2D Hyprutils::Math::CBox::closestPoint(const Vector2D& vec) const {
     return nv;
 }
 
-SBoxExtents Hyprutils::Math::CBox::extentsFrom(const CBox& small) {
+SBoxExtents Abyssutils::Math::CBox::extentsFrom(const CBox& small) {
     return {.topLeft = {small.x - x, small.y - y}, .bottomRight = {w - small.w - (small.x - x), h - small.h - (small.y - y)}};
 }

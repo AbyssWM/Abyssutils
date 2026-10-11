@@ -1,9 +1,9 @@
 #include <ranges>
 #include <algorithm>
-#include <hyprutils/string/String.hpp>
-#include <hyprutils/string/ConstVarList.hpp>
+#include <abyssutils/string/String.hpp>
+#include <abyssutils/string/ConstVarList.hpp>
 
-using namespace Hyprutils::String;
+using namespace Abyssutils::String;
 
 CConstVarList::CConstVarList(const std::string& in, const size_t lastArgNo, const char delim, const bool removeEmpty) : m_str(in) {
     if (in.empty())

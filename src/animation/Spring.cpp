@@ -1,10 +1,10 @@
-#include <hyprutils/animation/Spring.hpp>
+#include <abyssutils/animation/Spring.hpp>
 
 #include <algorithm>
 #include <cmath>
 
-using namespace Hyprutils;
-using namespace Hyprutils::Animation;
+using namespace Abyssutils;
+using namespace Abyssutils::Animation;
 
 void Animation::advanceSpring(float& value, float& velocity, const SSpringCurve& spring, std::chrono::duration<float> elapsed) {
     const float DT = std::max(elapsed.count(), 0.F);

@@ -3,11 +3,11 @@
 #include <algorithm>
 #include <format>
 #include <locale>
-#include <hyprutils/utils/ScopeGuard.hpp>
+#include <abyssutils/utils/ScopeGuard.hpp>
 
-using namespace Hyprutils::I18n;
-using namespace Hyprutils;
-using namespace Hyprutils::Utils;
+using namespace Abyssutils::I18n;
+using namespace Abyssutils;
+using namespace Abyssutils::Utils;
 
 CI18nEngine::CI18nEngine() : m_impl(Memory::makeUnique<SI18nEngineImpl>()) {
     ;

@@ -1,9 +1,9 @@
-#include <hyprutils/path/Path.hpp>
+#include <abyssutils/path/Path.hpp>
 
 #include <filesystem>
 #include <gtest/gtest.h>
 
-using namespace Hyprutils::Path;
+using namespace Abyssutils::Path;
 
 static std::string cwd() {
     return std::filesystem::current_path().string();

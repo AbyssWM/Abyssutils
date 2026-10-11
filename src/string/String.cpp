@@ -1,9 +1,9 @@
 #include <algorithm>
-#include <hyprutils/string/String.hpp>
+#include <abyssutils/string/String.hpp>
 
-using namespace Hyprutils::String;
+using namespace Abyssutils::String;
 
-std::string Hyprutils::String::trim(const std::string& in) {
+std::string Abyssutils::String::trim(const std::string& in) {
     if (in.empty())
         return in;
 
@@ -22,7 +22,7 @@ std::string Hyprutils::String::trim(const std::string& in) {
     return result;
 }
 
-std::string_view Hyprutils::String::trim(const std::string_view& sv) {
+std::string_view Abyssutils::String::trim(const std::string_view& sv) {
     if (sv.empty())
         return sv;
 
@@ -39,15 +39,15 @@ std::string_view Hyprutils::String::trim(const std::string_view& sv) {
     return sv.substr(countBefore, sv.length() - countBefore - countAfter);
 }
 
-std::string Hyprutils::String::trim(const char* in) {
+std::string Abyssutils::String::trim(const char* in) {
     return trim(std::string{in});
 }
 
-bool Hyprutils::String::isNumber(const std::string& str, bool allowfloat) {
+bool Abyssutils::String::isNumber(const std::string& str, bool allowfloat) {
     return isNumber2(str, allowfloat);
 }
 
-bool Hyprutils::String::isNumber2(const std::string_view& str, bool allowfloat) {
+bool Abyssutils::String::isNumber2(const std::string_view& str, bool allowfloat) {
     if (str.empty())
         return false;
 
@@ -83,7 +83,7 @@ bool Hyprutils::String::isNumber2(const std::string_view& str, bool allowfloat) 
     return isdigit(str.back()) != 0;
 }
 
-void Hyprutils::String::replaceInString(std::string& string, const std::string& what, const std::string& to) {
+void Abyssutils::String::replaceInString(std::string& string, const std::string& what, const std::string& to) {
     if (string.empty())
         return;
     size_t pos = 0;
@@ -93,7 +93,7 @@ void Hyprutils::String::replaceInString(std::string& string, const std::string& 
     }
 }
 
-bool Hyprutils::String::truthy(const std::string_view& in) {
+bool Abyssutils::String::truthy(const std::string_view& in) {
     if (in == "1")
         return true;
 

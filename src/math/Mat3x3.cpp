@@ -1,23 +1,23 @@
-#include <hyprutils/math/Mat3x3.hpp>
-#include <hyprutils/math/Vector2D.hpp>
-#include <hyprutils/math/Box.hpp>
-#include <hyprutils/memory/Casts.hpp>
+#include <abyssutils/math/Mat3x3.hpp>
+#include <abyssutils/math/Vector2D.hpp>
+#include <abyssutils/math/Box.hpp>
+#include <abyssutils/memory/Casts.hpp>
 #include <cmath>
 #include <unordered_map>
 #include <format>
 
-using namespace Hyprutils::Math;
-using namespace Hyprutils::Memory;
+using namespace Abyssutils::Math;
+using namespace Abyssutils::Memory;
 
 static std::unordered_map<eTransform, Mat3x3> transforms = {
-    {HYPRUTILS_TRANSFORM_NORMAL, std::array<float, 9>{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f}},
-    {HYPRUTILS_TRANSFORM_90, std::array<float, 9>{0.0f, 1.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f}},
-    {HYPRUTILS_TRANSFORM_180, std::array<float, 9>{-1.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f}},
-    {HYPRUTILS_TRANSFORM_270, std::array<float, 9>{0.0f, -1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f}},
-    {HYPRUTILS_TRANSFORM_FLIPPED, std::array<float, 9>{-1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f}},
-    {HYPRUTILS_TRANSFORM_FLIPPED_90, std::array<float, 9>{0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f}},
-    {HYPRUTILS_TRANSFORM_FLIPPED_180, std::array<float, 9>{1.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f}},
-    {HYPRUTILS_TRANSFORM_FLIPPED_270, std::array<float, 9>{0.0f, -1.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f}},
+    {ABYSSUTILS_TRANSFORM_NORMAL, std::array<float, 9>{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f}},
+    {ABYSSUTILS_TRANSFORM_90, std::array<float, 9>{0.0f, 1.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f}},
+    {ABYSSUTILS_TRANSFORM_180, std::array<float, 9>{-1.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f}},
+    {ABYSSUTILS_TRANSFORM_270, std::array<float, 9>{0.0f, -1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f}},
+    {ABYSSUTILS_TRANSFORM_FLIPPED, std::array<float, 9>{-1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f}},
+    {ABYSSUTILS_TRANSFORM_FLIPPED_90, std::array<float, 9>{0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f}},
+    {ABYSSUTILS_TRANSFORM_FLIPPED_180, std::array<float, 9>{1.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f}},
+    {ABYSSUTILS_TRANSFORM_FLIPPED_270, std::array<float, 9>{0.0f, -1.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f}},
 };
 
 Mat3x3::Mat3x3() {
@@ -80,7 +80,7 @@ Mat3x3 Mat3x3::projectBox(const CBox& box, eTransform transform, float rot /* ra
 
     mat.scale(boxSize);
 
-    if (transform != HYPRUTILS_TRANSFORM_NORMAL) {
+    if (transform != ABYSSUTILS_TRANSFORM_NORMAL) {
         mat.translate({0.5, 0.5});
         mat.transform(transform);
         mat.translate({-0.5, -0.5});

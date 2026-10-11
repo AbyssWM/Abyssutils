@@ -1,15 +1,15 @@
-#include "hyprutils/memory/SharedPtr.hpp"
-#include <hyprutils/signal/Signal.hpp>
-#include <hyprutils/memory/WeakPtr.hpp>
+#include "abyssutils/memory/SharedPtr.hpp"
+#include <abyssutils/signal/Signal.hpp>
+#include <abyssutils/memory/WeakPtr.hpp>
 #include <algorithm>
 
-using namespace Hyprutils::Signal;
-using namespace Hyprutils::Memory;
+using namespace Abyssutils::Signal;
+using namespace Abyssutils::Memory;
 
 #define SP CSharedPointer
 #define WP CWeakPointer
 
-void Hyprutils::Signal::CSignalBase::emitInternal(void* args) {
+void Abyssutils::Signal::CSignalBase::emitInternal(void* args) {
 
     // Save, an event can destroy thisptr
     const auto STATICS = m_vStaticListeners;
@@ -48,8 +48,8 @@ void Hyprutils::Signal::CSignalBase::emitInternal(void* args) {
     // as such we'd be doing a UAF
 }
 
-CHyprSignalListener Hyprutils::Signal::CSignalBase::registerListenerInternal(std::function<void(void*)> handler) {
-    CHyprSignalListener listener = SP<CSignalListener>(new CSignalListener(handler));
+CAbyssSignalListener Abyssutils::Signal::CSignalBase::registerListenerInternal(std::function<void(void*)> handler) {
+    CAbyssSignalListener listener = SP<CSignalListener>(new CSignalListener(handler));
     m_vListeners.emplace_back(listener);
 
     // housekeeping: remove any stale listeners
@@ -58,10 +58,10 @@ CHyprSignalListener Hyprutils::Signal::CSignalBase::registerListenerInternal(std
     return listener;
 }
 
-void Hyprutils::Signal::CSignalBase::registerStaticListenerInternal(std::function<void(void*)> handler) {
+void Abyssutils::Signal::CSignalBase::registerStaticListenerInternal(std::function<void(void*)> handler) {
     m_vStaticListeners.emplace_back(SP<CSignalListener>(new CSignalListener(handler)));
 }
 
-void Hyprutils::Signal::CSignal::emit(std::any data) {
+void Abyssutils::Signal::CSignal::emit(std::any data) {
     CSignalT::emit(data);
 }

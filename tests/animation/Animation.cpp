@@ -1,12 +1,12 @@
 
 #include <gtest/gtest.h>
 
-#include <hyprutils/animation/AnimationConfig.hpp>
-#include <hyprutils/animation/AnimationManager.hpp>
-#include <hyprutils/animation/AnimatedVariable.hpp>
-#include <hyprutils/memory/WeakPtr.hpp>
-#include <hyprutils/memory/UniquePtr.hpp>
-#include <hyprutils/animation/Spring.hpp>
+#include <abyssutils/animation/AnimationConfig.hpp>
+#include <abyssutils/animation/AnimationManager.hpp>
+#include <abyssutils/animation/AnimatedVariable.hpp>
+#include <abyssutils/memory/WeakPtr.hpp>
+#include <abyssutils/memory/UniquePtr.hpp>
+#include <abyssutils/animation/Spring.hpp>
 
 #include <chrono>
 
@@ -14,9 +14,9 @@
 #define WP CWeakPointer
 #define UP CUniquePointer
 
-using namespace Hyprutils::Animation;
-using namespace Hyprutils::Math;
-using namespace Hyprutils::Memory;
+using namespace Abyssutils::Animation;
+using namespace Abyssutils::Math;
+using namespace Abyssutils::Memory;
 
 class EmtpyContext {};
 

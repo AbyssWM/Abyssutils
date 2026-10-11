@@ -1,4 +1,4 @@
-#include <hyprutils/os/ProcLock.hpp>
+#include <abyssutils/os/ProcLock.hpp>
 
 #include <gtest/gtest.h>
 
@@ -10,7 +10,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-using namespace Hyprutils::OS;
+using namespace Abyssutils::OS;
 
 class ProcLockTest : public testing::Test {
   protected:
@@ -18,7 +18,7 @@ class ProcLockTest : public testing::Test {
         if (const auto* runtimeDir = std::getenv("XDG_RUNTIME_DIR"))
             m_oldRuntimeDir = runtimeDir;
 
-        m_runtimeDir = std::filesystem::temp_directory_path() / std::format("hyprutils-proclock-test-{}", getpid());
+        m_runtimeDir = std::filesystem::temp_directory_path() / std::format("abyssutils-proclock-test-{}", getpid());
         std::filesystem::remove_all(m_runtimeDir);
         std::filesystem::create_directories(m_runtimeDir);
         ASSERT_EQ(setenv("XDG_RUNTIME_DIR", m_runtimeDir.c_str(), 1), 0);
@@ -93,5 +93,5 @@ TEST_F(ProcLockTest, RuntimeDirectoryIsNotCached) {
 
     CProcLock second{"second", {}};
     ASSERT_TRUE(second.obtain(CProcLock::eProcLockFlags::NO_FLAGS));
-    EXPECT_TRUE(std::filesystem::exists(secondRuntimeDir / ".hyprlocks"));
+    EXPECT_TRUE(std::filesystem::exists(secondRuntimeDir / ".abysslocks"));
 }

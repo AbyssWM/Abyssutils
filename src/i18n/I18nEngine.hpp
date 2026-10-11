@@ -1,9 +1,9 @@
 #pragma once
 
-#include <hyprutils/i18n/I18nEngine.hpp>
+#include <abyssutils/i18n/I18nEngine.hpp>
 #include <vector>
 
-namespace Hyprutils::I18n {
+namespace Abyssutils::I18n {
     struct SI18nTranslationEntry {
         bool          exists = false;
         std::string   entry  = "";

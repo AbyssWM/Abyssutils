@@ -4,8 +4,8 @@
 #include <fcntl.h>
 #include <print>
 
-using namespace Hyprutils;
-using namespace Hyprutils::CLI;
+using namespace Abyssutils;
+using namespace Abyssutils::CLI;
 
 CLogger::CLogger() {
     m_impl = Memory::makeUnique<CLoggerImpl>(this);

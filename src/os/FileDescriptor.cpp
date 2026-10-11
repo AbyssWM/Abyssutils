@@ -1,11 +1,11 @@
 #include <cstdlib>
-#include <hyprutils/os/FileDescriptor.hpp>
+#include <abyssutils/os/FileDescriptor.hpp>
 #include <fcntl.h>
 #include <sys/poll.h>
 #include <unistd.h>
 #include <utility>
 
-using namespace Hyprutils::OS;
+using namespace Abyssutils::OS;
 
 CFileDescriptor::CFileDescriptor(int const fd) : m_fd(fd) {}
 

@@ -1,8 +1,8 @@
-#include <hyprutils/string/String.hpp>
+#include <abyssutils/string/String.hpp>
 
 #include <gtest/gtest.h>
 
-using namespace Hyprutils::String;
+using namespace Abyssutils::String;
 
 TEST(String, string) {
     EXPECT_EQ(trim("               a             "), "a");

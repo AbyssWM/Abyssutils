@@ -1,7 +1,7 @@
-#include <hyprutils/animation/AnimationConfig.hpp>
+#include <abyssutils/animation/AnimationConfig.hpp>
 
-using namespace Hyprutils::Animation;
-using namespace Hyprutils::Memory;
+using namespace Abyssutils::Animation;
+using namespace Abyssutils::Memory;
 
 #define SP CSharedPointer
 #define WP CWeakPointer

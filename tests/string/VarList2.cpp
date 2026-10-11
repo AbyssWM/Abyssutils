@@ -1,8 +1,8 @@
-#include <hyprutils/string/VarList2.hpp>
+#include <abyssutils/string/VarList2.hpp>
 
 #include <gtest/gtest.h>
 
-using namespace Hyprutils::String;
+using namespace Abyssutils::String;
 
 TEST(String, varlist2) {
     CVarList2 varList2("0 set", 2, ' ');

@@ -1,10 +1,10 @@
-#include <hyprutils/memory/SharedPtr.hpp>
-#include <hyprutils/memory/WeakPtr.hpp>
+#include <abyssutils/memory/SharedPtr.hpp>
+#include <abyssutils/memory/WeakPtr.hpp>
 
 #include <gtest/gtest.h>
 #include <utility>
 
-using namespace Hyprutils::Memory;
+using namespace Abyssutils::Memory;
 
 namespace {
     class IBase {

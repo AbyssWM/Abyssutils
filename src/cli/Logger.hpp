@@ -1,9 +1,9 @@
-#include <hyprutils/cli/Logger.hpp>
+#include <abyssutils/cli/Logger.hpp>
 #include <fstream>
 #include <filesystem>
 #include <mutex>
 
-namespace Hyprutils::CLI {
+namespace Abyssutils::CLI {
     class CLoggerImpl {
       public:
         CLoggerImpl(CLogger*);

@@ -1,10 +1,10 @@
-#include <hyprutils/os/File.hpp>
+#include <abyssutils/os/File.hpp>
 
 #include <filesystem>
 #include <fstream>
 
-using namespace Hyprutils;
-using namespace Hyprutils::File;
+using namespace Abyssutils;
+using namespace Abyssutils::File;
 
 std::expected<std::string, std::string> File::readFileAsString(const std::string_view& path) {
     std::error_code ec;

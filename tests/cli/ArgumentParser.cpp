@@ -4,8 +4,8 @@
 
 #include <print>
 
-using namespace Hyprutils::CLI;
-using namespace Hyprutils;
+using namespace Abyssutils::CLI;
+using namespace Abyssutils;
 
 constexpr const char* DESC_TEST = R"#(┏ My description
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓

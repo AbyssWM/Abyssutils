@@ -1,54 +1,54 @@
 #include <cli/Logger.hpp>
-#include <hyprutils/os/File.hpp>
+#include <abyssutils/os/File.hpp>
 
 #include <gtest/gtest.h>
 
 #include <filesystem>
 
-using namespace Hyprutils::CLI;
-using namespace Hyprutils;
+using namespace Abyssutils::CLI;
+using namespace Abyssutils;
 
 TEST(CLI, Logger) {
     CLogger logger;
 
     logger.setEnableRolling(true);
 
-    logger.log(Hyprutils::CLI::LOG_DEBUG, "Hello!");
+    logger.log(Abyssutils::CLI::LOG_DEBUG, "Hello!");
 
     EXPECT_EQ(logger.rollingLog(), "DEBUG ]: Hello!");
 
-    logger.log(Hyprutils::CLI::LOG_TRACE, "Hello!");
+    logger.log(Abyssutils::CLI::LOG_TRACE, "Hello!");
 
     EXPECT_EQ(logger.rollingLog(), "DEBUG ]: Hello!");
 
     logger.setLogLevel(LOG_TRACE);
 
-    logger.log(Hyprutils::CLI::LOG_TRACE, "Hello, {}!", "Trace");
+    logger.log(Abyssutils::CLI::LOG_TRACE, "Hello, {}!", "Trace");
 
     EXPECT_EQ(logger.rollingLog(), "DEBUG ]: Hello!\nTRACE ]: Hello, Trace!");
 
     CLoggerConnection connection(logger);
     connection.setName("conn");
 
-    connection.log(Hyprutils::CLI::LOG_TRACE, "Hello from connection!");
+    connection.log(Abyssutils::CLI::LOG_TRACE, "Hello from connection!");
 
     EXPECT_EQ(logger.rollingLog(), "DEBUG ]: Hello!\nTRACE ]: Hello, Trace!\nTRACE from conn ]: Hello from connection!");
 
-    connection.setLogLevel(Hyprutils::CLI::LOG_WARN);
+    connection.setLogLevel(Abyssutils::CLI::LOG_WARN);
 
-    connection.log(Hyprutils::CLI::LOG_DEBUG, "Hello from connection!");
+    connection.log(Abyssutils::CLI::LOG_DEBUG, "Hello from connection!");
 
     EXPECT_EQ(logger.rollingLog(), "DEBUG ]: Hello!\nTRACE ]: Hello, Trace!\nTRACE from conn ]: Hello from connection!");
 
     logger.setEnableRolling(false);
 
-    connection.log(Hyprutils::CLI::LOG_ERR, "Err!");
+    connection.log(Abyssutils::CLI::LOG_ERR, "Err!");
 
     EXPECT_EQ(logger.rollingLog(), "DEBUG ]: Hello!\nTRACE ]: Hello, Trace!\nTRACE from conn ]: Hello from connection!");
 
     logger.setEnableStdout(false);
 
-    logger.log(Hyprutils::CLI::LOG_ERR, "Error");
+    logger.log(Abyssutils::CLI::LOG_ERR, "Error");
 
     EXPECT_EQ(logger.rollingLog(), "DEBUG ]: Hello!\nTRACE ]: Hello, Trace!\nTRACE from conn ]: Hello from connection!");
 
@@ -72,11 +72,11 @@ TEST(CLI, Logger) {
     logger.setEnableStdout(true);
     logger.setTime(true);
 
-    logger.log(Hyprutils::CLI::LOG_WARN, "Timed warning!");
+    logger.log(Abyssutils::CLI::LOG_WARN, "Timed warning!");
 
     logger.setEnableColor(false);
 
-    logger.log(Hyprutils::CLI::LOG_CRIT, "rip");
+    logger.log(Abyssutils::CLI::LOG_CRIT, "rip");
 
     logger.setEnableRolling(true);
 

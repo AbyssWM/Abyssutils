@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.19)
 
 file(READ "${CMAKE_SOURCE_DIR}/VERSION" VER_RAW)
-string(STRIP ${VER_RAW} HYPRUTILS_VERSION)
-add_compile_definitions(HYPRUTILS_VERSION="${HYPRUTILS_VERSION}")
+string(STRIP ${VER_RAW} ABYSSUTILS_VERSION)
+add_compile_definitions(ABYSSUTILS_VERSION="${ABYSSUTILS_VERSION}")
 
 project(
-  hyprutils
-  VERSION ${HYPRUTILS_VERSION}
-  DESCRIPTION "Small C++ library for utilities used across the Hypr* ecosystem")
+  abyssutils
+  VERSION ${ABYSSUTILS_VERSION}
+  DESCRIPTION "Small C++ library for utilities used across the Abyss* ecosystem")
 
 include(CTest)
 include(GNUInstallDirs)
@@ -16,7 +16,7 @@ set(PREFIX ${CMAKE_INSTALL_PREFIX})
 set(INCLUDE ${CMAKE_INSTALL_FULL_INCLUDEDIR})
 set(LIBDIR ${CMAKE_INSTALL_FULL_LIBDIR})
 
-configure_file(hyprutils.pc.in hyprutils.pc @ONLY)
+configure_file(abyssutils.pc.in abyssutils.pc @ONLY)
 
 set(CMAKE_CXX_STANDARD 26)
 add_compile_options(
@@ -31,12 +31,12 @@ add_compile_options(
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 
 if(CMAKE_BUILD_TYPE MATCHES Debug OR CMAKE_BUILD_TYPE MATCHES DEBUG)
-  message(STATUS "Configuring hyprutils in Debug")
-  add_compile_definitions(HYPRLAND_DEBUG)
+  message(STATUS "Configuring abyssutils in Debug")
+  add_compile_definitions(ABYSSLAND_DEBUG)
   set(BUILD_TESTING ON)
 else()
   add_compile_options(-O3)
-  message(STATUS "Configuring hyprutils in Release")
+  message(STATUS "Configuring abyssutils in Release")
   set(BUILD_TESTING OFF)
 endif()
 
@@ -46,42 +46,42 @@ file(GLOB_RECURSE PUBLIC_HEADERS CONFIGURE_DEPENDS "include/*.hpp")
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(deps REQUIRED IMPORTED_TARGET pixman-1)
 
-add_library(hyprutils SHARED ${SRCFILES})
+add_library(abyssutils SHARED ${SRCFILES})
 target_include_directories(
-  hyprutils
+  abyssutils
   PUBLIC "./include"
   PRIVATE "./src")
-set_target_properties(hyprutils PROPERTIES VERSION ${hyprutils_VERSION}
+set_target_properties(abyssutils PROPERTIES VERSION ${abyssutils_VERSION}
                                            SOVERSION 13)
-target_link_libraries(hyprutils PkgConfig::deps)
+target_link_libraries(abyssutils PkgConfig::deps)
 
 if(BUILD_TESTING)
   # GTest
   find_package(GTest CONFIG REQUIRED)
   include(GoogleTest)
   file(GLOB_RECURSE TESTFILES CONFIGURE_DEPENDS "tests/*.cpp")
-  add_executable(hyprutils_tests ${TESTFILES})
+  add_executable(abyssutils_tests ${TESTFILES})
 
-  target_compile_options(hyprutils_tests PRIVATE --coverage -fsanitize=address)
-  target_link_options(hyprutils_tests PRIVATE --coverage)
+  target_compile_options(abyssutils_tests PRIVATE --coverage -fsanitize=address)
+  target_link_options(abyssutils_tests PRIVATE --coverage)
   
   target_include_directories(
-    hyprutils_tests
+    abyssutils_tests
     PUBLIC "./include"
     PRIVATE "./src" "./src/include" "./protocols" "${CMAKE_BINARY_DIR}")
-  target_link_libraries(hyprutils_tests PRIVATE asan hyprutils GTest::gtest_main
+  target_link_libraries(abyssutils_tests PRIVATE asan abyssutils GTest::gtest_main
                                                        PkgConfig::deps)
-  gtest_discover_tests(hyprutils_tests
+  gtest_discover_tests(abyssutils_tests
     PROPERTIES ENVIRONMENT "ASAN_OPTIONS=detect_leaks=0"
   )
 
-  # Add coverage to hyprutils for test builds
-  target_compile_options(hyprutils PRIVATE --coverage)
-  target_link_options(hyprutils PRIVATE --coverage)
+  # Add coverage to abyssutils for test builds
+  target_compile_options(abyssutils PRIVATE --coverage)
+  target_link_options(abyssutils PRIVATE --coverage)
 endif()
 
 # Installation
-install(TARGETS hyprutils)
-install(DIRECTORY "include/hyprutils" DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
-install(FILES ${CMAKE_BINARY_DIR}/hyprutils.pc
+install(TARGETS abyssutils)
+install(DIRECTORY "include/abyssutils" DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+install(FILES ${CMAKE_BINARY_DIR}/abyssutils.pc
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)

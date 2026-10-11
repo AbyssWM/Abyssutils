@@ -1,10 +1,10 @@
-#include <hyprutils/string/Numeric.hpp>
+#include <abyssutils/string/Numeric.hpp>
 
 #include <gtest/gtest.h>
 #include <cstdint>
 #include <limits>
 
-using namespace Hyprutils::String;
+using namespace Abyssutils::String;
 
 TEST(Numeric, intSuccess) {
     auto r = strToNumber<int>("42");

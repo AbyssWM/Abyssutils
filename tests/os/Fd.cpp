@@ -1,9 +1,9 @@
-#include <hyprutils/os/FileDescriptor.hpp>
+#include <abyssutils/os/FileDescriptor.hpp>
 
 #include <gtest/gtest.h>
 #include <sys/mman.h>
 
-using namespace Hyprutils::OS;
+using namespace Abyssutils::OS;
 
 TEST(OS, fd) {
     std::string     name = "/test_filedescriptors";

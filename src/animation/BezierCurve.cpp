@@ -1,12 +1,12 @@
-#include <hyprutils/animation/BezierCurve.hpp>
-#include <hyprutils/memory/Casts.hpp>
+#include <abyssutils/animation/BezierCurve.hpp>
+#include <abyssutils/memory/Casts.hpp>
 
 #include <array>
 #include <cmath>
 
-using namespace Hyprutils::Animation;
-using namespace Hyprutils::Math;
-using namespace Hyprutils::Memory;
+using namespace Abyssutils::Animation;
+using namespace Abyssutils::Math;
+using namespace Abyssutils::Memory;
 
 void CBezierCurve::setup(const std::array<Vector2D, 2>& pVec) {
     setup4(std::array<Vector2D, 4>{
@@ -102,6 +102,6 @@ float CBezierCurve::getYForPoint(float const& x) const {
     return LOWERPOINT.y + ((UPPERPOINT.y - LOWERPOINT.y) * PERCINDELTA);
 }
 
-const std::vector<Hyprutils::Math::Vector2D>& CBezierCurve::getControlPoints() const {
+const std::vector<Abyssutils::Math::Vector2D>& CBezierCurve::getControlPoints() const {
     return m_vPoints;
 }

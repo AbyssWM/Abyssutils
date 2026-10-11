@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <i18n/I18nEngine.hpp>
 
-using namespace Hyprutils::I18n;
+using namespace Abyssutils::I18n;
 
 TEST(I18n, Locale) {
     EXPECT_EQ(extractLocale("pl_PL.UTF-8"), "pl_PL");

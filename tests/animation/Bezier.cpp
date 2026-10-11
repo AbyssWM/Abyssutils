@@ -1,10 +1,10 @@
 #include <cmath>
-#include <hyprutils/animation/BezierCurve.hpp>
+#include <abyssutils/animation/BezierCurve.hpp>
 
 #include <gtest/gtest.h>
 
-using Hyprutils::Animation::CBezierCurve;
-using Hyprutils::Math::Vector2D;
+using Abyssutils::Animation::CBezierCurve;
+using Abyssutils::Math::Vector2D;
 
 static void test_nonmonotonic4_clamps_out_of_range() {
     // Non-monotonic curve in X

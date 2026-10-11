@@ -1,10 +1,10 @@
-#include <hyprutils/cli/ArgumentParser.hpp>
+#include <abyssutils/cli/ArgumentParser.hpp>
 
 #include <map>
 #include <variant>
 #include <vector>
 
-namespace Hyprutils::CLI {
+namespace Abyssutils::CLI {
     enum eArgumentType : uint8_t {
         ARG_TYPE_BOOL = 0,
         ARG_TYPE_INT,

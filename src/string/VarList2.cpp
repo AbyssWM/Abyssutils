@@ -1,9 +1,9 @@
 #include <algorithm>
 
-#include <hyprutils/string/VarList2.hpp>
-#include <hyprutils/string/String.hpp>
+#include <abyssutils/string/VarList2.hpp>
+#include <abyssutils/string/String.hpp>
 
-using namespace Hyprutils::String;
+using namespace Abyssutils::String;
 
 CVarList2::CVarList2(std::string&& in, const size_t lastArgNo, const char delim, const bool removeEmpty, const bool allowEscape) :
     m_inStringCopy(std::move(in)), m_inString(m_inStringCopy) {

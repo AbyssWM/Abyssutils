@@ -1,11 +1,11 @@
 #include <ranges>
 #include <algorithm>
-#include <hyprutils/string/VarList.hpp>
-#include <hyprutils/string/String.hpp>
+#include <abyssutils/string/VarList.hpp>
+#include <abyssutils/string/String.hpp>
 
-using namespace Hyprutils::String;
+using namespace Abyssutils::String;
 
-Hyprutils::String::CVarList::CVarList(const std::string& in, const size_t lastArgNo, const char delim, const bool removeEmpty) {
+Abyssutils::String::CVarList::CVarList(const std::string& in, const size_t lastArgNo, const char delim, const bool removeEmpty) {
     if (!removeEmpty && in.empty())
         m_vArgs.emplace_back("");
 
@@ -26,7 +26,7 @@ Hyprutils::String::CVarList::CVarList(const std::string& in, const size_t lastAr
     }
 }
 
-std::string Hyprutils::String::CVarList::join(const std::string& joiner, size_t from, size_t to) const {
+std::string Abyssutils::String::CVarList::join(const std::string& joiner, size_t from, size_t to) const {
     size_t      last = to == 0 ? size() : to;
 
     std::string rolling;

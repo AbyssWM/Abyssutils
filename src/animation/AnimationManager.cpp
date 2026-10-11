@@ -1,11 +1,11 @@
 #include <algorithm>
-#include <hyprutils/animation/AnimationManager.hpp>
-#include <hyprutils/animation/AnimatedVariable.hpp>
+#include <abyssutils/animation/AnimationManager.hpp>
+#include <abyssutils/animation/AnimatedVariable.hpp>
 
-using namespace Hyprutils::Animation;
-using namespace Hyprutils::Math;
-using namespace Hyprutils::Memory;
-using namespace Hyprutils::Signal;
+using namespace Abyssutils::Animation;
+using namespace Abyssutils::Math;
+using namespace Abyssutils::Memory;
+using namespace Abyssutils::Signal;
 
 #define SP CSharedPointer
 #define WP CWeakPointer

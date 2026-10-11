@@ -1,6 +1,6 @@
-#include <hyprutils/os/ProcLock.hpp>
-#include <hyprutils/os/Semaphore.hpp>
-#include <hyprutils/string/Numeric.hpp>
+#include <abyssutils/os/ProcLock.hpp>
+#include <abyssutils/os/Semaphore.hpp>
+#include <abyssutils/string/Numeric.hpp>
 
 #include <algorithm>
 #include <csignal>
@@ -19,10 +19,10 @@
 #include <chrono>
 #include <random>
 
-using namespace Hyprutils;
-using namespace Hyprutils::OS;
+using namespace Abyssutils;
+using namespace Abyssutils::OS;
 
-constexpr const char* LOCK_SUBDIR = ".hyprlocks";
+constexpr const char* LOCK_SUBDIR = ".abysslocks";
 
 static constexpr bool operator&(CProcLock::eProcLockFlags lhs, CProcLock::eProcLockFlags rhs) noexcept {
     using U = std::underlying_type_t<CProcLock::eProcLockFlags>;
@@ -199,7 +199,7 @@ std::expected<void, CProcLock::eProcLockObtainingError> CProcLock::obtain(eProcL
         return {};                                                                                                                                                                 \
     }
 
-    auto sem = CSemaphore("hyprutils_ProcLock");
+    auto sem = CSemaphore("abyssutils_ProcLock");
 
     if (!m_lockPath.empty())
         return std::unexpected(eProcLockObtainingError::ALREADY_TAKEN);
@@ -232,7 +232,7 @@ std::expected<void, CProcLock::eProcLockObtainingError> CProcLock::obtain(eProcL
 }
 
 std::vector<CProcLock::SProcLockData> CProcLock::enumerate() const {
-    auto sem = CSemaphore("hyprutils_ProcLock");
+    auto sem = CSemaphore("abyssutils_ProcLock");
     return enumerateInternal(m_instanceName);
 }
 
@@ -240,7 +240,7 @@ void CProcLock::releaseLock() const {
     if (m_lockPath.empty() || m_ownerPid != getpid())
         return;
 
-    auto sem = CSemaphore("hyprutils_ProcLock");
+    auto sem = CSemaphore("abyssutils_ProcLock");
 
     //
     std::error_code ec;
