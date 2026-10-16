@@ -1,0 +1,56 @@
+name: CI
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build:
+    name: Build Abyssutils (Arch)
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux
+    steps:
+      - name: Install packages
+        run: |
+          sed -i 's/SigLevel    = Required DatabaseOptional/SigLevel    = Optional TrustAll/' /etc/pacman.conf
+          pacman --noconfirm --noprogressbar -Syyu
+          pacman --noconfirm --noprogressbar -S \
+            base-devel cmake git ninja pkgconf pixman gtest clang lld libc++
+
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Mark directory as safe for git
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Build Abyssutils
+        run: |
+          cmake -S . -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX=/usr \
+            -DCMAKE_INSTALL_LIBDIR=lib
+          cmake --build build -j "$(nproc)"
+
+      - name: Run tests
+        run: |
+          cmake -S . -B build-test -G Ninja \
+            -DCMAKE_BUILD_TYPE=Debug \
+            -DCMAKE_INSTALL_PREFIX=/usr \
+            -DCMAKE_INSTALL_LIBDIR=lib
+          cmake --build build-test -j "$(nproc)"
+          cd build-test && ctest --output-on-failure
+
+      - name: Install
+        run: cmake --install build --prefix install-root
+
+      - name: Package artifacts
+        run: |
+          mkdir abyssutils
+          cp LICENSE abyssutils/ || true
+          cp -r install-root/* abyssutils/
+          tar -cvJf Abyssutils.tar.xz abyssutils
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: Build archive
+          path: Abyssutils.tar.xz
