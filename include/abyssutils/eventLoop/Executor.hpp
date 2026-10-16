@@ -2,7 +2,7 @@
 
 #include <functional>
 
-namespace Hyprutils::EventLoop {
+namespace Abyssutils::EventLoop {
     class CEventLoop;
 
     /*

@@ -1,6 +1,6 @@
 #include "Executor.hpp"
 
-using namespace Hyprutils::EventLoop;
+using namespace Abyssutils::EventLoop;
 
 CLoopExecutor::CLoopExecutor(Memory::CAtomicSharedPointer<SExecutorState> state) : m_state(std::move(state)) {
     ;

@@ -1,13 +1,13 @@
 #pragma once
 
-#include "hyprutils/eventLoop/EventMask.hpp"
-#include <hyprutils/eventLoop/FDSource.hpp>
-#include <hyprutils/memory/SharedPtr.hpp>
+#include "abyssutils/eventLoop/EventMask.hpp"
+#include <abyssutils/eventLoop/FDSource.hpp>
+#include <abyssutils/memory/SharedPtr.hpp>
 
 #include <cstdint>
 #include <functional>
 
-namespace Hyprutils::EventLoop {
+namespace Abyssutils::EventLoop {
     class CEventLoop;
 
     class CFDSource : public IFDSource {

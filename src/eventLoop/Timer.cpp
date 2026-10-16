@@ -2,7 +2,7 @@
 
 #include "EventLoop.hpp"
 
-using namespace Hyprutils::EventLoop;
+using namespace Abyssutils::EventLoop;
 
 CTimer::CTimer(CEventLoop& loop, std::optional<Duration> dur, std::function<void(ITimer&)>&& callback) : m_loop(&loop), m_callback(std::move(callback)) {
     updateTimeout(dur);

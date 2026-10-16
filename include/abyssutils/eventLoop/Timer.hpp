@@ -3,7 +3,7 @@
 #include <chrono>
 #include <optional>
 
-namespace Hyprutils::EventLoop {
+namespace Abyssutils::EventLoop {
 
     /*
      * A basic timer for the event loop. This timer is a one-shot timer by design,

@@ -5,7 +5,7 @@
 #include "../macros/Enums.hpp"
 #include "../memory/Casts.hpp"
 
-namespace Hyprutils::EventLoop {
+namespace Abyssutils::EventLoop {
     enum class eEventMask : uint8_t {
         EMPTY    = 0,
         READABLE = (1 << 0),
@@ -15,5 +15,5 @@ namespace Hyprutils::EventLoop {
     };
 
     // NOLINTNEXTLINE SHUT UP
-    HYPRUTILS_EXPOSE_ENUM_AS_MASK(eEventMask, FdEventMask);
+    ABYSSUTILS_EXPOSE_ENUM_AS_MASK(eEventMask, FdEventMask);
 }

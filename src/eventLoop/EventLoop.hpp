@@ -1,7 +1,7 @@
 #pragma once
 
-#include <hyprutils/eventLoop/EventLoop.hpp>
-#include <hyprutils/memory/WeakPtr.hpp>
+#include <abyssutils/eventLoop/EventLoop.hpp>
+#include <abyssutils/memory/WeakPtr.hpp>
 
 #include <deque>
 #include <unordered_map>
@@ -10,7 +10,7 @@
 #include "Executor.hpp"
 #include "backend/Backend.hpp"
 
-namespace Hyprutils::EventLoop {
+namespace Abyssutils::EventLoop {
     class CFDSource;
     class CPostDispatchHook;
     class CTimer;

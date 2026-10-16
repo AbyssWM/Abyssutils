@@ -15,7 +15,7 @@
 #include "../memory/SharedPtr.hpp"
 #include "../os/FileDescriptor.hpp"
 
-namespace Hyprutils::EventLoop {
+namespace Abyssutils::EventLoop {
     /*
      * A strictly single-threaded event loop. Nothing in this event loop is thread-safe,
      * and everything is dispatched synchronously.

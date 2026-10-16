@@ -1,7 +1,7 @@
 #pragma once
 
-#include <hyprutils/eventLoop/EventMask.hpp>
-#include <hyprutils/memory/UniquePtr.hpp>
+#include <abyssutils/eventLoop/EventMask.hpp>
+#include <abyssutils/memory/UniquePtr.hpp>
 
 #include <chrono>
 #include <cstdint>
@@ -10,7 +10,7 @@
 #include <string>
 #include <vector>
 
-namespace Hyprutils::EventLoop {
+namespace Abyssutils::EventLoop {
     enum class eBackendEventType : uint8_t {
         FD,
         TIMER,

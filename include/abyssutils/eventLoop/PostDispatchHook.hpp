@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Hyprutils::EventLoop {
+namespace Abyssutils::EventLoop {
     class IPostDispatchHook {
       public:
         virtual ~IPostDispatchHook() = default;

@@ -4,15 +4,15 @@
 #include "PostDispatchHook.hpp"
 #include "Timer.hpp"
 
-#include <hyprutils/utils/ScopeGuard.hpp>
+#include <abyssutils/utils/ScopeGuard.hpp>
 
 #include <algorithm>
 #include <utility>
 
-using namespace Hyprutils::EventLoop;
-using namespace Hyprutils::Memory;
-using namespace Hyprutils::OS;
-using namespace Hyprutils::Utils;
+using namespace Abyssutils::EventLoop;
+using namespace Abyssutils::Memory;
+using namespace Abyssutils::OS;
+using namespace Abyssutils::Utils;
 
 // A broken or permanently ready level-triggered source must not starve idles,
 // post-dispatch hooks, or executor work forever.

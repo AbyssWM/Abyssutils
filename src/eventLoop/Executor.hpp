@@ -1,13 +1,13 @@
 #pragma once
 
-#include <hyprutils/eventLoop/Executor.hpp>
-#include <hyprutils/memory/Atomic.hpp>
+#include <abyssutils/eventLoop/Executor.hpp>
+#include <abyssutils/memory/Atomic.hpp>
 
 #include <deque>
 #include <functional>
 #include <mutex>
 
-namespace Hyprutils::EventLoop {
+namespace Abyssutils::EventLoop {
     struct SExecutorState {
         std::mutex                        mutex;
         std::deque<std::function<void()>> callbacks;

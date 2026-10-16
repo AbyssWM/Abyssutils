@@ -1,11 +1,11 @@
 #pragma once
 
-#include "hyprutils/eventLoop/EventLoop.hpp"
-#include <hyprutils/eventLoop/Timer.hpp>
+#include "abyssutils/eventLoop/EventLoop.hpp"
+#include <abyssutils/eventLoop/Timer.hpp>
 
 #include <chrono>
 
-namespace Hyprutils::EventLoop {
+namespace Abyssutils::EventLoop {
     using Timestamp = std::chrono::steady_clock::time_point;
     using Duration  = std::chrono::steady_clock::duration;
 

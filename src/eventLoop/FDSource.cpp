@@ -2,8 +2,8 @@
 
 #include "EventLoop.hpp"
 
-using namespace Hyprutils::EventLoop;
-using namespace Hyprutils::OS;
+using namespace Abyssutils::EventLoop;
+using namespace Abyssutils::OS;
 
 CFDSource::CFDSource(CEventLoop& loop, uintptr_t id, CFileDescriptor&& fd, FdEventMask mask, std::function<void(IFDSource&, FdEventMask)>&& callback) :
     m_loop(&loop), m_id(id), m_fd(std::move(fd)), m_mask(mask), m_callback(Memory::makeShared<std::function<void(IFDSource&, FdEventMask)>>(std::move(callback))) {}

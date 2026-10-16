@@ -6,7 +6,7 @@
 #include "../os/FileDescriptor.hpp"
 #include "EventMask.hpp"
 
-namespace Hyprutils::EventLoop {
+namespace Abyssutils::EventLoop {
     class IFDSource {
       public:
         virtual ~IFDSource() = default;

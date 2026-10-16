@@ -1,10 +1,10 @@
 #pragma once
 
-#include <hyprutils/eventLoop/PostDispatchHook.hpp>
+#include <abyssutils/eventLoop/PostDispatchHook.hpp>
 
 #include <functional>
 
-namespace Hyprutils::EventLoop {
+namespace Abyssutils::EventLoop {
     class CPostDispatchHook : public IPostDispatchHook {
       public:
         CPostDispatchHook(std::function<void()>&& callback) : m_callback(std::move(callback)) {}

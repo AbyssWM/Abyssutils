@@ -1,6 +1,6 @@
 #include "Backend.hpp"
 
-#include <hyprutils/os/FileDescriptor.hpp>
+#include <abyssutils/os/FileDescriptor.hpp>
 
 #include <algorithm>
 #include <array>
@@ -23,9 +23,9 @@
 #include <unordered_map>
 #include <utility>
 
-using namespace Hyprutils::EventLoop;
-using namespace Hyprutils::Memory;
-using namespace Hyprutils::OS;
+using namespace Abyssutils::EventLoop;
+using namespace Abyssutils::Memory;
+using namespace Abyssutils::OS;
 
 namespace {
     constexpr uintptr_t TIMER_IDENT = 1;

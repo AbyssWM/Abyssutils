@@ -1,4 +1,4 @@
-#include <hyprutils/eventLoop/EventLoop.hpp>
+#include <abyssutils/eventLoop/EventLoop.hpp>
 
 #include <gtest/gtest.h>
 
@@ -15,9 +15,9 @@
 #include <utility>
 #include <vector>
 
-using namespace Hyprutils::EventLoop;
-using namespace Hyprutils::Memory;
-using namespace Hyprutils::OS;
+using namespace Abyssutils::EventLoop;
+using namespace Abyssutils::Memory;
+using namespace Abyssutils::OS;
 using namespace std::chrono_literals;
 
 namespace {
