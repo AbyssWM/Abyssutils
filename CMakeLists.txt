@@ -64,11 +64,7 @@ target_include_directories(
   PRIVATE "./src")
 set_target_properties(abyssutils PROPERTIES VERSION ${abyssutils_VERSION}
                                            SOVERSION 13)
-<<<<<<< HEAD
-target_link_libraries(abyssutils PkgConfig::deps)
-=======
-target_link_libraries(hyprutils PkgConfig::deps ${EVENT_LOOP_LIBRARIES})
->>>>>>> upstream/main
+target_link_libraries(abyssutils PkgConfig::deps ${EVENT_LOOP_LIBRARIES})
 
 if(BUILD_TESTING)
   # GTest
