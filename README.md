@@ -1,58 +1,127 @@
 <div align="center">
 
-<img src="https://github.com/AbyssWM.png?size=200" width="160" alt="Abyss logo">
+<img src="https://github.com/AbyssWM.png?size=200" width="140" alt="Abyss logo">
 
-# Abyssutils
+# 📚 Abyssutils
 
 **Utility library used across the Abyss ecosystem.**
 
-Part of [**Abyss**](https://github.com/AbyssWM) · Based on [abyssutils](https://github.com/AbyssWM/abyssutils) by [abysswm](https://github.com/AbyssWM)
+[![License](https://img.shields.io/badge/license-BSD--3--Clause-blue?style=flat-square)](LICENSE) [![Fedora COPR](https://img.shields.io/badge/fedora-COPR-51a2da?style=flat-square&logo=fedora&logoColor=white)](https://copr.fedorainfracloud.org/coprs/bb8therobot1717/Abyss/) [![Wayland](https://img.shields.io/badge/wayland-native-ffbc00?style=flat-square&logo=wayland&logoColor=black)](https://wayland.freedesktop.org/) [![C++](https://img.shields.io/badge/C%2B%2B-26-00599c?style=flat-square&logo=cplusplus&logoColor=white)](https://isocpp.org/) [![Stars](https://img.shields.io/github/stars/AbyssWM/Abyssutils?style=flat-square&color=7c3aed)](https://github.com/AbyssWM/Abyssutils/stargazers)
+
+[🌐 Website](https://abysswm.github.io/) · [📖 Wiki](https://abysswm.github.io/wiki/getting-started) · [📦 Install](#-install) · [🌊 Ecosystem](#-the-abyss-ecosystem)
+
+<sub>Part of <a href="https://github.com/AbyssWM"><b>Abyss</b></a> · based on <a href="https://github.com/hyprwm/hyprutils">hyprutils</a> by <a href="https://github.com/hyprwm">hyprwm</a></sub>
 
 </div>
 
 ---
 
 > [!WARNING]
-> **Early development.** Abyss is being rebranded and reworked right now. Nothing is ready for daily use yet.
+> **Experimental, pre-1.0.** Packages exist for several distributions, but expect rough edges and breaking changes.
 
-## About
+## ✨ About
 
 Abyssutils contains the shared building blocks of every Abyss project: memory helpers, signals, math, strings, paths and more.
 
-Abyssutils is a fork of [abyssutils](https://github.com/AbyssWM/abyssutils). Every Abyss library and tool is forked and renamed, so the whole ecosystem builds and updates as one – independent of system packages.
+Abyssutils is a fork of [abyssutils](https://github.com/AbyssWM/abyssutils). Every Abyss library and tool is forked and renamed, so the whole ecosystem builds and updates as one.
 
-## The Abyss ecosystem
+## 📦 Install
 
-| Repository | Based on |
-|---|---|
-| [Abyssland](https://github.com/AbyssWM/Abyssland) | [Abyssland](https://github.com/AbyssWM/Abyssland) |
-| [Abyssal](https://github.com/AbyssWM/Abyssal) | [abyssal](https://github.com/AbyssWM/abyssal) |
-| **Abyssutils** | [abyssutils](https://github.com/AbyssWM/abyssutils) |
-| [Abyssparse](https://github.com/AbyssWM/Abyssparse) | [abyssparse](https://github.com/AbyssWM/abyssparse) |
-| [Abysscursor](https://github.com/AbyssWM/Abysscursor) | [abysscursor](https://github.com/AbyssWM/abysscursor) |
-| [Abyssgraphics](https://github.com/AbyssWM/Abyssgraphics) | [abyssgraphics](https://github.com/AbyssWM/abyssgraphics) |
-| [Abysswire](https://github.com/AbyssWM/Abysswire) | [abysswire](https://github.com/AbyssWM/abysswire) |
-| [Abyss-scanner](https://github.com/AbyssWM/Abyss-scanner) | [abyss-scanner](https://github.com/AbyssWM/abyss-scanner) |
-| [Abyssland-protocols](https://github.com/AbyssWM/Abyssland-protocols) | [abyssland-protocols](https://github.com/AbyssWM/abyssland-protocols) |
-| [Xdg-desktop-portal-abyss](https://github.com/AbyssWM/Xdg-desktop-portal-abyss) | [xdg-desktop-portal-abyss](https://github.com/AbyssWM/xdg-desktop-portal-abyss) |
-| [Abysstoolkit](https://github.com/AbyssWM/Abysstoolkit) | [abysstoolkit](https://github.com/AbyssWM/abysstoolkit) |
-| [Abyss-guiutils](https://github.com/AbyssWM/Abyss-guiutils) | [abyss-guiutils](https://github.com/AbyssWM/abyss-guiutils) |
-| [AbyssDusk](https://github.com/AbyssWM/AbyssDusk) | [abysssunset](https://github.com/AbyssWM/abysssunset) |
-| [AbyssLock](https://github.com/AbyssWM/AbyssLock) | [abysslock](https://github.com/AbyssWM/abysslock) |
-| [AbyssPaper](https://github.com/AbyssWM/AbyssPaper) | [abysspaper](https://github.com/AbyssWM/abysspaper) |
-| [AbyssPicker](https://github.com/AbyssWM/AbyssPicker) | [abysspicker](https://github.com/AbyssWM/abysspicker) |
+<details open>
+<summary><b>Fedora 44 / 45</b> — COPR</summary>
 
-## Credits
+```sh
+sudo dnf copr enable bb8therobot1717/Abyss
+sudo dnf install abyssutils abyssutils-devel
+```
+</details>
+
+<details>
+<summary><b>Arch Linux</b> — PKGBUILD</summary>
+
+```sh
+git clone https://github.com/AbyssWM/arch-builds.git
+cd arch-builds/packages/abyssutils && makepkg -si
+```
+</details>
+
+<details>
+<summary><b>Gentoo</b> — overlay</summary>
+
+```sh
+eselect repository add abyss git https://github.com/AbyssWM/gentoo-builds.git
+emaint sync -r abyss
+emerge --ask dev-libs/abyssutils
+```
+</details>
+
+<details>
+<summary><b>Void Linux</b> — xbps-src template</summary>
+
+Copy `srcpkgs/abyssutils` from [void-builds](https://github.com/AbyssWM/void-builds) into your `void-packages` checkout, then:
+
+```sh
+./xbps-src pkg abyssutils && sudo xbps-install -R hostdir/binpkgs abyssutils
+```
+</details>
+
+<details>
+<summary><b>Debian · Ubuntu · Linux Mint</b></summary>
+
+Packaging lives in [debian-builds](https://github.com/AbyssWM/debian-builds) and [ubuntu-builds](https://github.com/AbyssWM/ubuntu-builds). A signed APT repository is on the way — see the [install guide](https://abysswm.github.io/wiki/getting-started) for the current status.
+</details>
+
+> [!TIP]
+> You normally don't install this by hand — it is pulled in as a dependency of `abyssland`.
+
+### 🔨 Build from source
+
+Install the Abyss libraries it depends on first (see the [install guide](https://abysswm.github.io/wiki/getting-started)), then:
+
+```sh
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+cmake --build build
+sudo cmake --install build
+```
+
+## 🌊 The Abyss ecosystem
+
+<details>
+<summary>All 17 repositories</summary>
+
+| Repository | Role | Based on |
+|---|---|---|
+| 🪟 [Abyssland](https://github.com/AbyssWM/Abyssland) | compositor | [Hyprland](https://github.com/hyprwm/Hyprland) |
+| 📚 [Abyssal](https://github.com/AbyssWM/Abyssal) | library | [aquamarine](https://github.com/hyprwm/aquamarine) |
+| 📚 **Abyssutils** | library | [hyprutils](https://github.com/hyprwm/hyprutils) |
+| 📚 [Abyssparse](https://github.com/AbyssWM/Abyssparse) | library | [hyprlang](https://github.com/hyprwm/hyprlang) |
+| 📚 [Abysscursor](https://github.com/AbyssWM/Abysscursor) | library | [hyprcursor](https://github.com/hyprwm/hyprcursor) |
+| 📚 [Abyssgraphics](https://github.com/AbyssWM/Abyssgraphics) | library | [hyprgraphics](https://github.com/hyprwm/hyprgraphics) |
+| 📚 [Abysswire](https://github.com/AbyssWM/Abysswire) | library | [hyprwire](https://github.com/hyprwm/hyprwire) |
+| 🛠️ [Abyss-scanner](https://github.com/AbyssWM/Abyss-scanner) | tool | [hyprwayland-scanner](https://github.com/hyprwm/hyprwayland-scanner) |
+| 📜 [Abyssland-protocols](https://github.com/AbyssWM/Abyssland-protocols) | protocols | [hyprland-protocols](https://github.com/hyprwm/hyprland-protocols) |
+| 🧩 [Xdg-desktop-portal-abyss](https://github.com/AbyssWM/Xdg-desktop-portal-abyss) | portal | [xdg-desktop-portal-hyprland](https://github.com/hyprwm/xdg-desktop-portal-hyprland) |
+| 📚 [Abysstoolkit](https://github.com/AbyssWM/Abysstoolkit) | library | [hyprtoolkit](https://github.com/hyprwm/hyprtoolkit) |
+| 🌙 [Abyss-guiutils](https://github.com/AbyssWM/Abyss-guiutils) | app | [hyprland-guiutils](https://github.com/hyprwm/hyprland-guiutils) |
+| 🌙 [AbyssDusk](https://github.com/AbyssWM/AbyssDusk) | app | [hyprsunset](https://github.com/hyprwm/hyprsunset) |
+| 🔒 [AbyssLock](https://github.com/AbyssWM/AbyssLock) | app | [hyprlock](https://github.com/hyprwm/hyprlock) |
+| 🖼️ [AbyssPaper](https://github.com/AbyssWM/AbyssPaper) | app | [hyprpaper](https://github.com/hyprwm/hyprpaper) |
+| 🎨 [AbyssPicker](https://github.com/AbyssWM/AbyssPicker) | app | [hyprpicker](https://github.com/hyprwm/hyprpicker) |
+| 🔐 [AbyssPolkit](https://github.com/AbyssWM/AbyssPolkit) | app | [hyprpolkitagent](https://github.com/hyprwm/hyprpolkitagent) |
+
+</details>
+
+## 💜 Credits
 
 Abyssutils exists thanks to **[abyssutils](https://github.com/AbyssWM/abyssutils)**, created by **Abyss Development** at **[abysswm](https://github.com/AbyssWM)**. All credit for the original work goes to them – please support the original project.
 
 Abyss is an independent project and is **not affiliated with or endorsed by abysswm**.
 
-## License
+## ⚖️ License
 
 This project is licensed under the **BSD 3-Clause License**. The original copyright notice is kept in [`LICENSE`](LICENSE) as required.
 
-## Contributors
+## 👥 Contributors
 
 - [bb8TheRobot](https://github.com/bb8TheRobot)
 - Claude (Anthropic) – AI pair programmer
