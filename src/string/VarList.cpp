@@ -15,8 +15,11 @@ Abyssutils::String::CVarList::CVarList(const std::string& in, const size_t lastA
     std::ranges::replace_if(args, [&](const char& c) { return delim == 's' ? std::isspace(c) : c == delim; }, 0);
 
     for (const auto& s : args | std::views::split(0)) {
-        if (removeEmpty && s.empty())
+        if (removeEmpty && s.empty()) {
+            // still a delimiter to skip for the rest of the line
+            ++pos;
             continue;
+        }
         if (++idx == lastArgNo) {
             m_vArgs.emplace_back(trim(in.substr(pos)));
             break;

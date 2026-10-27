@@ -211,7 +211,7 @@ Vector2D Abyssutils::Math::CRegion::closestPoint(const Vector2D& vec) const {
         else
             y = vec.y;
 
-        double distance = pow(x, 2) + pow(y, 2);
+        double distance = pow(x - vec.x, 2) + pow(y - vec.y, 2);
         if (distance < bestDist) {
             bestDist = distance;
             leader   = {x, y};

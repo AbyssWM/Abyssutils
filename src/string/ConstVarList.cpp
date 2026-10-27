@@ -14,9 +14,14 @@ CConstVarList::CConstVarList(const std::string& in, const size_t lastArgNo, cons
     std::ranges::replace_if(m_str, [&](const char& c) { return delim == 's' ? std::isspace(c) : c == delim; }, 0);
 
     for (const auto& s : m_str | std::views::split(0)) {
-        if (removeEmpty && s.empty())
+        if (removeEmpty && s.empty()) {
+            // still a delimiter to skip for the rest of the line
+            ++pos;
             continue;
+        }
         if (++idx == lastArgNo) {
+            // the rest keeps its delimiters, which were replaced by \0 above
+            std::copy(in.begin() + pos, in.end(), m_str.begin() + pos);
             m_args.emplace_back(trim(std::string_view{m_str}.substr(pos)));
             break;
         }
